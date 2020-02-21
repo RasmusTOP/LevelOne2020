@@ -13,12 +13,10 @@ public class LightCone : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 inputDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        Vector2 realDir = Camera.main.transform.TransformDirection(inputDir);
-        if(realDir.magnitude > 0.1f)
-            {
-                Quaternion newRotation = Quaternion.LookRotation(realDir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10);
-            }
+        if(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0 ){
+        transform.rotation = Quaternion.Euler(0, 0, 90*Input.GetAxis("Horizontal")+180*Input.GetAxis("Vertical"));;
+        }
+        //switch
+        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
